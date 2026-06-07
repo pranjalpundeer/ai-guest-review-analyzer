@@ -1,4 +1,4 @@
-# 🏡 Guest Review Sentiment Classifier
+# 🏡 Himalayan Guest Experience Intelligence Platform
 
 ## Overview
 
