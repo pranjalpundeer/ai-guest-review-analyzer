@@ -1,0 +1,13 @@
+{
+  "name": "himalayan-review-platform",
+  "version": "1.0.0",
+  "description": "AI-Powered Guest Review Analysis for Hospitality Businesses",
+  "scripts": {
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
