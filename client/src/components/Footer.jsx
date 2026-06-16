@@ -76,7 +76,7 @@ const Footer = () => (
           © {new Date().getFullYear()} Himalayan Guest Experience Intelligence Platform. All rights reserved.
         </p>
         <p className="text-xs text-gray-500">
-          Powered by <span className="text-himalaya-sky">OpenAI</span> · Built with React & Express
+            Built with React, Vite & Tailwind CSS
         </p>
       </div>
     </div>
