@@ -9,23 +9,24 @@ export default {
     extend: {
       colors: {
         himalaya: {
-          blue: '#1B4F72',
-          teal: '#148F77',
+          blue:    '#1B4F72',
+          teal:    '#148F77',
           emerald: '#1E8449',
-          sky: '#2E86C1',
-          mist: '#D6EAF8',
-          snow: '#F8FBFF',
-          slate: '#1C2833',
-          stone: '#2C3E50',
+          sky:     '#2E86C1',
+          mist:    '#D6EAF8',
+          snow:    '#F8FBFF',
+          slate:   '#1C2833',
+          stone:   '#2C3E50',
         }
       },
       fontFamily: {
-        display: ['Georgia', 'Cambria', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Playfair Display', 'Georgia', 'Cambria', 'serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'card': '0 4px 20px rgba(27, 79, 114, 0.1)',
+        'card':       '0 4px 20px rgba(27, 79, 114, 0.10)',
         'card-hover': '0 8px 30px rgba(27, 79, 114, 0.18)',
+        'nav':        '0 2px 20px rgba(27, 79, 114, 0.12)',
       }
     },
   },
