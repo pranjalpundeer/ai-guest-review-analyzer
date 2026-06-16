@@ -156,32 +156,83 @@ Dark Mode
 
 # 📂 Project Structure
 
-```
+```text
 himalayan-review-platform/
-
-client/
 │
-├── components/
-├── pages/
-├── hooks/
-├── utils/
-├── assets/
-└── App.jsx
-
-server/
+├── client/
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── icons.svg
+│   │
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── hero.png
+│   │   │   ├── react.svg
+│   │   │   └── vite.svg
+│   │   │
+│   │   ├── components/
+│   │   │   ├── Badge.jsx
+│   │   │   ├── ErrorBanner.jsx
+│   │   │   ├── FeatureCard.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Hero.jsx
+│   │   │   ├── LoadingOverlay.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ResultsTable.jsx
+│   │   │   ├── ReviewInput.jsx
+│   │   │   ├── SectionTitle.jsx
+│   │   │   ├── SentimentChart.jsx
+│   │   │   ├── StatCard.jsx
+│   │   │   └── StatsCards.jsx
+│   │   │
+│   │   ├── data/
+│   │   │   └── sampleData.js
+│   │   │
+│   │   ├── hooks/
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── About.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Home.jsx
+│   │   │   └── Login.jsx
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── api.js
+│   │   │   └── exportCSV.js
+│   │   │
+│   │   ├── App.css
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   │
+│   ├── .env.example
+│   ├── .gitignore
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   ├── vite.config.js
+│   └── README.md
 │
-├── controllers/
-├── routes/
-├── services/
-├── middleware/
-├── config/
-├── models/
-└── server.js
-
-README.md
-package.json
+├── server/
+│   ├── controllers/
+│   │   └── analyzeController.js
+│   │
+│   ├── routes/
+│   │   └── analyze.js
+│   │
+│   ├── services/
+│   │   └── openaiService.js
+│   │
+│   ├── .env.example
+│   ├── index.js
+│   └── package.json
+│
+├── .gitignore
+├── package.json
+└── README.md
 ```
-
 ---
 
 # ⚙️ Installation
