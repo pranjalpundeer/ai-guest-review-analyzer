@@ -1,223 +1,371 @@
 # 🏔️ Himalayan Guest Experience Intelligence Platform
 
-**AI-Powered Guest Review Analysis for Hospitality Businesses**
+<p align="center">
 
-Analyze guest reviews instantly using OpenAI. Paste reviews, get sentiment classification, theme detection, and professional response suggestions — all in one dashboard.
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT-black?logo=openai)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?logo=tailwind-css)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb)
+![License](https://img.shields.io/badge/License-MIT-blue)
 
----
+</p>
 
-## Features
-
-- **AI Review Analysis** — Sentiment (Positive / Neutral / Negative) + Theme classification
-- **Dashboard Statistics** — Summary cards with counts and percentages
-- **Pie Chart** — Visual sentiment distribution via Recharts
-- **Filterable Table** — Search, filter by sentiment/theme, sort results
-- **Copy Responses** — One-click copy for each AI-generated management reply
-- **CSV Export** — Download all results as a spreadsheet
-- **Dark Mode** — Full light/dark theme toggle
-- **Example Reviews** — Load sample data instantly
-- **Error Handling** — Friendly messages for all failure cases
-- **Responsive Design** — Works on mobile and desktop
+> AI-powered hospitality analytics platform that transforms guest reviews into actionable business insights using Large Language Models.
 
 ---
 
-## Tech Stack
+# 📖 Overview
 
-| Layer    | Technology                          |
-|----------|-------------------------------------|
-| Frontend | React 18 (Vite), Tailwind CSS, Recharts, Axios |
-| Backend  | Node.js, Express.js, OpenAI SDK v4  |
-| AI       | GPT-3.5-turbo via OpenAI API        |
+Himalayan Guest Experience Intelligence Platform helps hotels, resorts, and hospitality businesses understand customer feedback instantly.
+
+Instead of manually reading hundreds of reviews, the platform automatically:
+
+- Detects sentiment
+- Identifies major complaint themes
+- Generates professional management responses
+- Calculates business insights
+- Visualizes customer satisfaction trends
+
+The project combines **React**, **Node.js**, **Express**, and **OpenAI** to create a modern AI-powered analytics dashboard.
 
 ---
 
-## Folder Structure
+# ✨ Features
+
+## 🤖 AI Review Analysis
+
+- Sentiment Classification
+- Theme Detection
+- AI-generated Response Suggestions
+- Review Categorization
+- Batch Review Processing
+
+---
+
+## 📊 Dashboard
+
+- Total Reviews
+- Positive Reviews
+- Negative Reviews
+- Neutral Reviews
+- Theme Distribution
+- Sentiment Analytics
+- Interactive Charts
+
+---
+
+## 👤 Authentication
+
+- User Login
+- Secure Authentication
+- Protected Dashboard
+- Session Management
+
+---
+
+## 📈 Analytics
+
+- Pie Charts
+- Review Statistics
+- Theme Analysis
+- Sentiment Breakdown
+- Exportable Reports
+
+---
+
+## 📂 Data Management
+
+- CSV Export
+- Search Reviews
+- Filter by Theme
+- Filter by Sentiment
+- Sort Results
+
+---
+
+## 🎨 User Experience
+
+- Responsive Design
+- Modern UI
+- Dark Mode
+- Loading States
+- Error Handling
+- Clean Dashboard
+
+---
+
+# 🖼️ Screenshots
+
+> Add screenshots after deployment.
+
+```
+Home Page
+
+Dashboard
+
+Review Analysis
+
+Analytics
+
+Login
+
+Dark Mode
+```
+
+---
+
+# 🏗️ Tech Stack
+
+## Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- Axios
+- React Router
+- Recharts
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- OpenAI SDK
+
+---
+
+## AI
+
+- OpenAI GPT
+
+---
+
+## Database
+
+- MongoDB *(if connected)*
+
+---
+
+## Authentication
+
+- JWT / Firebase *(depending on your implementation)*
+
+---
+
+# 📂 Project Structure
 
 ```
 himalayan-review-platform/
+
+client/
 │
-├── client/                    # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Hero.jsx           # Header with mountain motif
-│   │   │   ├── ReviewInput.jsx    # Textarea + action buttons
-│   │   │   ├── StatsCards.jsx     # Summary dashboard cards
-│   │   │   ├── SentimentChart.jsx # Recharts pie chart
-│   │   │   ├── ResultsTable.jsx   # Filterable results table
-│   │   │   ├── LoadingOverlay.jsx # Spinner while analyzing
-│   │   │   └── ErrorBanner.jsx    # Error display component
-│   │   ├── utils/
-│   │   │   ├── api.js             # Axios API client
-│   │   │   └── exportCSV.js       # CSV download utility
-│   │   ├── App.jsx                # Root component
-│   │   ├── main.jsx               # Entry point
-│   │   └── index.css              # Tailwind + custom styles
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   └── package.json
+├── components/
+├── pages/
+├── hooks/
+├── utils/
+├── assets/
+└── App.jsx
+
+server/
 │
-├── server/                    # Express backend
-│   ├── routes/
-│   │   └── analyze.js             # Route definitions
-│   ├── controllers/
-│   │   └── analyzeController.js   # Request handlers
-│   ├── services/
-│   │   └── openaiService.js       # OpenAI API integration
-│   ├── index.js                   # Express server entry
-│   ├── .env                       # Your secrets (create this)
-│   ├── .env.example               # Template for secrets
-│   └── package.json
-│
-├── .gitignore
-├── package.json               # Root scripts (concurrently)
-└── README.md
+├── controllers/
+├── routes/
+├── services/
+├── middleware/
+├── config/
+├── models/
+└── server.js
+
+README.md
+package.json
 ```
 
 ---
 
-## Quick Start
+# ⚙️ Installation
 
-### 1. Clone & Install
+## Clone Repository
 
 ```bash
-git clone <your-repo-url>
-cd himalayan-review-platform
+git clone https://github.com/yourusername/himalayan-review-platform.git
 
-# Install all dependencies (root + client + server)
-npm run install:all
+cd himalayan-review-platform
 ```
 
-Or manually:
+## Install Dependencies
 
 ```bash
-# Root
 npm install
 
-# Client
-cd client && npm install
+cd client
+npm install
 
-# Server
-cd ../server && npm install
+cd ../server
+npm install
 ```
 
-### 2. Configure Environment
+---
 
-Create `server/.env`:
+# 🔑 Environment Variables
 
-```bash
-cp server/.env.example server/.env
+Create:
+
 ```
-
-Edit `server/.env`:
+server/.env
+```
 
 ```env
-OPENAI_API_KEY=sk-your-openai-api-key-here
+OPENAI_API_KEY=your_api_key
+
 PORT=5000
+
 CLIENT_URL=http://localhost:5173
 ```
 
-> Get your API key from: https://platform.openai.com/api-keys
+---
 
-### 3. Run the Application
+# ▶️ Run Project
+
+Backend
 
 ```bash
-# Run both frontend and backend simultaneously (from root)
+cd server
+
 npm run dev
 ```
 
-Or start each separately:
+Frontend
 
 ```bash
-# Terminal 1 — Backend
-cd server && npm run dev
+cd client
 
-# Terminal 2 — Frontend
-cd client && npm run dev
+npm run dev
 ```
-
-Open your browser: **http://localhost:5173**
 
 ---
 
-## API Reference
+# 📡 API
 
-### POST `/api/analyze`
+## POST
 
-Analyze one or more guest reviews.
+```
+/api/analyze
+```
 
-**Request:**
+### Request
+
 ```json
 {
-  "reviews": [
-    "Amazing food and very friendly staff!",
-    "Rooms were clean but breakfast was average.",
-    "The washroom was dirty and service was slow."
+  "reviews":[
+      "Great food and amazing staff!"
   ]
 }
 ```
 
-**Response:**
+---
+
+### Response
+
 ```json
 {
-  "results": [
-    {
-      "review": "Amazing food and very friendly staff!",
-      "sentiment": "Positive",
-      "theme": "Food",
-      "response": "Thank you for your wonderful feedback. We look forward to welcoming you again."
-    },
-    {
-      "review": "Rooms were clean but breakfast was average.",
-      "sentiment": "Neutral",
-      "theme": "Food",
-      "response": "We appreciate your balanced feedback and will work to enhance our breakfast offerings."
-    },
-    {
-      "review": "The washroom was dirty and service was slow.",
-      "sentiment": "Negative",
-      "theme": "Cleanliness",
-      "response": "We sincerely apologize for this experience and have addressed the matter with our housekeeping team."
-    }
+  "results":[
+      {
+          "review":"Great food",
+          "sentiment":"Positive",
+          "theme":"Food",
+          "response":"Thank you for your feedback..."
+      }
   ]
 }
 ```
 
-**Sentiment values:** `Positive` | `Neutral` | `Negative`
+---
 
-**Theme values:** `Food` | `Host` | `Location` | `Cleanliness` | `Value` | `Experience`
+# 🧠 AI Workflow
+
+```
+Guest Reviews
+
+        │
+
+        ▼
+
+OpenAI Analysis
+
+        │
+
+        ▼
+
+Sentiment Detection
+
+        │
+
+        ▼
+
+Theme Classification
+
+        │
+
+        ▼
+
+AI Response Generation
+
+        │
+
+        ▼
+
+Dashboard Analytics
+```
 
 ---
 
-## Environment Variables
+# 🚀 Future Improvements
 
-### Server (`server/.env`)
-
-| Variable        | Required | Description                         |
-|-----------------|----------|-------------------------------------|
-| `OPENAI_API_KEY`| ✅ Yes   | Your OpenAI API key                 |
-| `PORT`          | No       | Server port (default: 5000)         |
-| `CLIENT_URL`    | No       | Frontend URL for CORS (default: http://localhost:5173) |
-
-### Client (`client/.env`)
-
-| Variable        | Required | Description                         |
-|-----------------|----------|-------------------------------------|
-| `VITE_API_URL`  | No       | Backend API URL (default: http://localhost:5000/api) |
+- Multi-language review support
+- PDF Report Generation
+- Email Reports
+- Real-time Analytics
+- Hotel Admin Panel
+- Team Collaboration
+- AI Trend Prediction
+- Review History
+- Cloud Deployment
 
 ---
 
-## Usage Tips
+# 🎯 Learning Outcomes
 
-- Paste **one review per line** in the textarea
-- Maximum **50 reviews** per analysis
-- Use the **Load Examples** button to try it immediately
-- Click **Export CSV** to download results as a spreadsheet
-- Use **search and filters** to find specific reviews in the results
-- **Copy** any suggested response with one click
+This project demonstrates:
+
+- REST API Development
+- React Application Architecture
+- AI Integration
+- Prompt Engineering
+- Data Visualization
+- Backend Architecture
+- API Design
+- Responsive UI Development
+- Error Handling
+- Software Engineering Best Practices
 
 ---
 
-## License
+# 📄 License
 
-MIT — feel free to use and modify for your hospitality business.
+MIT License
+
+---
+
+# 👨‍💻 Author
+
+**Pranjal**
+
+Engineering Student
+
+AI • Full Stack Development • Software Engineering
+
+---
+
+⭐ If you like this project, consider giving it a star!
