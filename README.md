@@ -101,16 +101,23 @@ The project combines **React**, **Node.js**, **Express**, and **OpenAI** to crea
 
 ```
 Home Page
+<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 52 15 AM" src="https://github.com/user-attachments/assets/0cd44ba9-de8b-4f76-a5fd-344983773773" />
 
-Dashboard
 
-Review Analysis
+Dashboard & Review Analysis
+<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 52 51 AM" src="https://github.com/user-attachments/assets/8ca013c1-f2c6-45f1-ae84-62806d3ed2d7" />
+
+<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 54 13 AM" src="https://github.com/user-attachments/assets/c7efcc12-9390-4e13-a3a9-1a4bf9f70ab0" />
 
 Analytics
+<img width="1013" height="155" alt="Screenshot 2026-06-16 at 10 56 37 AM" src="https://github.com/user-attachments/assets/6aef2bfe-b3d2-4145-943f-223003e67a49" />
+
+<img width="285" height="277" alt="Screenshot 2026-06-16 at 10 57 19 AM" src="https://github.com/user-attachments/assets/247987b9-9412-4d22-bd43-5e1b30aa31aa" />
+
 
 Login
+<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 57 45 AM" src="https://github.com/user-attachments/assets/c2c07091-d986-40c9-8cdd-157ac7bf6600" />
 
-Dark Mode
 ```
 
 ---
