@@ -5,9 +5,10 @@
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
 ![OpenAI](https://img.shields.io/badge/OpenAI-GPT-black?logo=openai)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?logo=tailwind-css)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?logo=tailwind-css)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Database-green?logo=mongodb)
 ![License](https://img.shields.io/badge/License-MIT-blue)
+![Week](https://img.shields.io/badge/SIP-Week%203-orange)
 
 </p>
 
@@ -86,34 +87,47 @@ The project combines **React**, **Node.js**, **Express**, and **OpenAI** to crea
 
 ## 🎨 User Experience
 
-- Responsive Design
+- Responsive Design (Mobile / Tablet / Desktop)
 - Modern UI
-- Dark Mode
+- Dark / Light Mode Toggle
 - Loading States
 - Error Handling
 - Clean Dashboard
 
 ---
 
+## 🧩 Component Library (Week 3)
+
+Reusable UI primitives in `client/src/components/ui/`:
+
+| Component | Description |
+|---|---|
+| `Button` | Primary, secondary, ghost variants with size control |
+| `Input` | Text input with label, error state, icon support |
+| `Modal` | Accessible overlay dialog with backdrop dismiss |
+| `Toast` | Auto-dismissing notification (success / error / warning / info) |
+| `Loader` | Animated spinner with size and overlay variants |
+
+All components are documented with JSDoc, exported via `index.js`, and demoed at `/components`.
+
+---
+
 # 🖼️ Screenshots
 
-> Add screenshots after deployment.
- 
-Home Page
-<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 52 15 AM" src="https://github.com/user-attachments/assets/0cd44ba9-de8b-4f76-a5fd-344983773773" />
+## Desktop (1440px)
+![Desktop View](docs/screenshots/screenshot_desktop.png)
 
-Dashboard & Review Analysis
-<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 52 51 AM" src="https://github.com/user-attachments/assets/8ca013c1-f2c6-45f1-ae84-62806d3ed2d7" />
+## Tablet (768px)
+![Tablet View](docs/screenshots/screenshot_tablet.png)
 
-<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 54 13 AM" src="https://github.com/user-attachments/assets/c7efcc12-9390-4e13-a3a9-1a4bf9f70ab0" />
+## Mobile (375px)
+![Mobile View](docs/screenshots/screenshot_mobile.png)
 
-Analytics
-<img width="1013" height="155" alt="Screenshot 2026-06-16 at 10 56 37 AM" src="https://github.com/user-attachments/assets/6aef2bfe-b3d2-4145-943f-223003e67a49" />
+## Light Mode
+![Light Mode](docs/screenshots/screenshot_light.png)
 
-<img width="285" height="277" alt="Screenshot 2026-06-16 at 10 57 19 AM" src="https://github.com/user-attachments/assets/247987b9-9412-4d22-bd43-5e1b30aa31aa" />
-
-Login
-<img width="1201" height="772" alt="Screenshot 2026-06-16 at 10 57 45 AM" src="https://github.com/user-attachments/assets/c2c07091-d986-40c9-8cdd-157ac7bf6600" />
+## Dark Mode
+![Dark Mode](docs/screenshots/screenshot_dark.png)
 
 ---
 
@@ -121,7 +135,7 @@ Login
 
 ## Frontend
 
-- React
+- React 19
 - Vite
 - Tailwind CSS
 - Axios
@@ -140,7 +154,7 @@ Login
 
 ## AI
 
-- OpenAI GPT
+- OpenAI GPT-3.5
 
 ---
 
@@ -168,11 +182,18 @@ himalayan-review-platform/
 │   │
 │   ├── src/
 │   │   ├── assets/
-│   │   │   ├── hero.png
-│   │   │   ├── react.svg
-│   │   │   └── vite.svg
 │   │   │
 │   │   ├── components/
+│   │   │   ├── ui/                        ← Week 3: Component Library
+│   │   │   │   ├── Button.jsx
+│   │   │   │   ├── Input.jsx
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   ├── Toast.jsx
+│   │   │   │   ├── Loader.jsx
+│   │   │   │   └── index.js
+│   │   │   ├── DashboardSidebar.jsx       ← Week 3
+│   │   │   ├── ReviewDetailModal.jsx      ← Week 3
+│   │   │   ├── ThemeToggle.jsx            ← Week 3
 │   │   │   ├── Badge.jsx
 │   │   │   ├── ErrorBanner.jsx
 │   │   │   ├── FeatureCard.jsx
@@ -187,54 +208,52 @@ himalayan-review-platform/
 │   │   │   ├── StatCard.jsx
 │   │   │   └── StatsCards.jsx
 │   │   │
+│   │   ├── context/                       ← Week 3
+│   │   │   ├── ThemeContext.jsx
+│   │   │   └── ToastContext.jsx
+│   │   │
 │   │   ├── data/
 │   │   │   └── sampleData.js
 │   │   │
-│   │   ├── hooks/
-│   │   │
 │   │   ├── pages/
 │   │   │   ├── About.jsx
+│   │   │   ├── ComponentShowcase.jsx      ← Week 3
 │   │   │   ├── Dashboard.jsx
 │   │   │   ├── Home.jsx
 │   │   │   └── Login.jsx
 │   │   │
 │   │   ├── utils/
 │   │   │   ├── api.js
-│   │   │   └── exportCSV.js
+│   │   │   ├── exportCSV.js
+│   │   │   └── reviewMeta.js              ← Week 3
 │   │   │
-│   │   ├── App.css
 │   │   ├── App.jsx
 │   │   ├── index.css
 │   │   └── main.jsx
 │   │
-│   ├── .env.example
-│   ├── .gitignore
-│   ├── eslint.config.js
 │   ├── index.html
 │   ├── package.json
-│   ├── postcss.config.js
 │   ├── tailwind.config.js
-│   ├── vite.config.js
-│   └── README.md
+│   └── vite.config.js
 │
 ├── server/
 │   ├── controllers/
 │   │   └── analyzeController.js
-│   │
 │   ├── routes/
 │   │   └── analyze.js
-│   │
 │   ├── services/
 │   │   └── openaiService.js
-│   │
-│   ├── .env.example
 │   ├── index.js
 │   └── package.json
+│
+├── docs/
+│   └── screenshots/                       ← Week 3 responsive screenshots
 │
 ├── .gitignore
 ├── package.json
 └── README.md
 ```
+
 ---
 
 # ⚙️ Installation
@@ -242,38 +261,27 @@ himalayan-review-platform/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/himalayan-review-platform.git
-
-cd himalayan-review-platform
+git clone https://github.com/pranjalpundeer/Himalayan-Guest-Experience-Intelligence-Platform.git
+cd Himalayan-Guest-Experience-Intelligence-Platform
 ```
 
 ## Install Dependencies
 
 ```bash
 npm install
-
-cd client
-npm install
-
-cd ../server
-npm install
+cd client && npm install
+cd ../server && npm install
 ```
 
 ---
 
 # 🔑 Environment Variables
 
-Create:
-
-```
-server/.env
-```
+Create `server/.env`:
 
 ```env
 OPENAI_API_KEY=your_api_key
-
 PORT=5000
-
 CLIENT_URL=http://localhost:5173
 ```
 
@@ -281,55 +289,43 @@ CLIENT_URL=http://localhost:5173
 
 # ▶️ Run Project
 
-Backend
-
+Backend:
 ```bash
 cd server
-
 npm run dev
 ```
 
-Frontend
-
+Frontend:
 ```bash
 cd client
-
 npm run dev
 ```
+
+Visit `http://localhost:5173` — and go to `/components` to see the full component library showcase.
 
 ---
 
 # 📡 API
 
-## POST
-
-```
-/api/analyze
-```
+## POST `/api/analyze`
 
 ### Request
-
 ```json
 {
-  "reviews":[
-      "Great food and amazing staff!"
-  ]
+  "reviews": ["Great food and amazing staff!"]
 }
 ```
 
----
-
 ### Response
-
 ```json
 {
-  "results":[
-      {
-          "review":"Great food",
-          "sentiment":"Positive",
-          "theme":"Food",
-          "response":"Thank you for your feedback..."
-      }
+  "results": [
+    {
+      "review": "Great food and amazing staff!",
+      "sentiment": "Positive",
+      "theme": "Food",
+      "response": "Thank you for your kind words! We are thrilled our team made your stay memorable."
+    }
   ]
 }
 ```
@@ -339,37 +335,8 @@ npm run dev
 # 🧠 AI Workflow
 
 ```
-Guest Reviews
-
-        │
-
-        ▼
-
-OpenAI Analysis
-
-        │
-
-        ▼
-
-Sentiment Detection
-
-        │
-
-        ▼
-
-Theme Classification
-
-        │
-
-        ▼
-
-AI Response Generation
-
-        │
-
-        ▼
-
-Dashboard Analytics
+Guest Reviews → OpenAI Analysis → Sentiment Detection
+      → Theme Classification → AI Response Generation → Dashboard
 ```
 
 ---
@@ -385,6 +352,7 @@ Dashboard Analytics
 - AI Trend Prediction
 - Review History
 - Cloud Deployment
+- Accessibility (ARIA) pass on component library
 
 ---
 
@@ -394,13 +362,12 @@ This project demonstrates:
 
 - REST API Development
 - React Application Architecture
-- AI Integration
-- Prompt Engineering
+- AI Integration & Prompt Engineering
+- Reusable Component Library Design
+- Dark / Light Theme System
+- Responsive UI Development (Mobile → Desktop)
 - Data Visualization
-- Backend Architecture
-- API Design
-- Responsive UI Development
-- Error Handling
+- Error Handling & Loading States
 - Software Engineering Best Practices
 
 ---
@@ -413,10 +380,8 @@ MIT License
 
 # 👨‍💻 Author
 
-**Pranjal**
-
-Engineering Student
-
+**Pranjal Pundeer**  
+Engineering Student  
 AI • Full Stack Development • Software Engineering
 
 ---
