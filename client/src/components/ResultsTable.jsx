@@ -1,31 +1,16 @@
 /**
  * ResultsTable Component
- * Displays analyzed reviews with sentiment badges,
- * copy button, search, sort, and filter controls
+ * Displays analyzed reviews with sentiment badges, copy button, search,
+ * sort, and filter controls. Renders as a full table on tablet/desktop
+ * (>= 768px) and as a stacked card list on mobile — eliminating horizontal
+ * page scroll on small screens. Each row/card can open a Review Detail modal.
  */
 
 import { useState, useMemo } from 'react';
-
-const SENTIMENT_BADGE = {
-  Positive: 'badge-positive',
-  Neutral: 'badge-neutral',
-  Negative: 'badge-negative',
-};
-
-const SENTIMENT_ICON = {
-  Positive: '😊',
-  Neutral: '😐',
-  Negative: '😞',
-};
-
-const THEME_ICON = {
-  Food: '🍽️',
-  Host: '🤝',
-  Location: '📍',
-  Cleanliness: '🧹',
-  Value: '💰',
-  Experience: '⭐',
-};
+import { Input, Button } from './ui';
+import Badge from './Badge';
+import ReviewDetailModal from './ReviewDetailModal';
+import { SENTIMENT_ICON, THEME_ICON, sentimentVariant } from '../utils/reviewMeta';
 
 const CopyButton = ({ text }) => {
   const [copied, setCopied] = useState(false);
@@ -78,11 +63,18 @@ const SORT_OPTIONS = [
   { value: 'theme', label: 'Theme' },
 ];
 
+const SearchIcon = () => (
+  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+  </svg>
+);
+
 const ResultsTable = ({ results, onExport }) => {
   const [search, setSearch] = useState('');
   const [sentimentFilter, setSentimentFilter] = useState('All');
   const [themeFilter, setThemeFilter] = useState('All');
   const [sortBy, setSortBy] = useState('index');
+  const [detailRow, setDetailRow] = useState(null);
 
   const filtered = useMemo(() => {
     let data = results.map((r, i) => ({ ...r, _index: i }));
@@ -124,34 +116,33 @@ const ResultsTable = ({ results, onExport }) => {
             Showing {filtered.length} of {results.length} review{results.length !== 1 ? 's' : ''}
           </p>
         </div>
-        <button
+        <Button
           onClick={onExport}
-          className="btn-secondary flex items-center gap-2 text-himalaya-emerald border-himalaya-emerald/30 hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
+          variant="secondary"
+          className="text-himalaya-emerald border-himalaya-emerald/30 hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
+          icon={(
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+          )}
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-            />
-          </svg>
           Export CSV
-        </button>
+        </Button>
       </div>
 
       {/* Filters & search */}
       <div className="flex flex-wrap gap-3 mb-5 p-4 bg-himalaya-snow dark:bg-himalaya-slate rounded-xl border border-gray-100 dark:border-gray-700">
         {/* Search */}
-        <div className="relative flex-1 min-w-[180px]">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input
-            type="text"
+        <div className="flex-1 min-w-[180px]">
+          <Input
+            type="search"
             placeholder="Search reviews…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600
-                       bg-white dark:bg-himalaya-stone text-himalaya-slate dark:text-gray-100
-                       placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30"
+            icon={<SearchIcon />}
+            className="!py-2"
           />
         </div>
 
@@ -161,7 +152,7 @@ const ResultsTable = ({ results, onExport }) => {
           onChange={(e) => setSentimentFilter(e.target.value)}
           className="px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600
                      bg-white dark:bg-himalaya-stone text-himalaya-slate dark:text-gray-100
-                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30"
+                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30 transition-colors duration-200"
         >
           {SENTIMENTS.map((s) => (
             <option key={s}>{s === 'All' ? 'All Sentiments' : s}</option>
@@ -174,7 +165,7 @@ const ResultsTable = ({ results, onExport }) => {
           onChange={(e) => setThemeFilter(e.target.value)}
           className="px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600
                      bg-white dark:bg-himalaya-stone text-himalaya-slate dark:text-gray-100
-                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30"
+                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30 transition-colors duration-200"
         >
           {THEMES.map((t) => (
             <option key={t}>{t === 'All' ? 'All Themes' : t}</option>
@@ -187,7 +178,7 @@ const ResultsTable = ({ results, onExport }) => {
           onChange={(e) => setSortBy(e.target.value)}
           className="px-3 py-2 text-sm rounded-lg border border-gray-200 dark:border-gray-600
                      bg-white dark:bg-himalaya-stone text-himalaya-slate dark:text-gray-100
-                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30"
+                     focus:outline-none focus:ring-2 focus:ring-himalaya-blue/30 transition-colors duration-200"
         >
           {SORT_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>{o.label}</option>
@@ -195,7 +186,7 @@ const ResultsTable = ({ results, onExport }) => {
         </select>
       </div>
 
-      {/* Table */}
+      {/* Empty state */}
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-gray-400 dark:text-gray-500">
           <div className="text-4xl mb-3">🔍</div>
@@ -203,51 +194,91 @@ const ResultsTable = ({ results, onExport }) => {
           <p className="text-sm mt-1">Try adjusting the search or filter settings</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-700">
-          <table className="min-w-full divide-y divide-gray-100 dark:divide-gray-700">
-            <thead>
-              <tr className="bg-himalaya-mist/60 dark:bg-himalaya-blue/10">
-                <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider w-8">#</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider min-w-[180px]">Original Review</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider">Sentiment</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider">Theme</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider min-w-[220px]">Suggested Response</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white dark:bg-himalaya-stone divide-y divide-gray-50 dark:divide-gray-700/50">
-              {filtered.map((row) => (
-                <tr
-                  key={row._index}
-                  className="hover:bg-himalaya-snow dark:hover:bg-himalaya-slate/50 transition-colors"
-                >
-                  <td className="px-4 py-4 text-xs text-gray-400 font-mono">{row._index + 1}</td>
-                  <td className="px-4 py-4 text-sm text-gray-700 dark:text-gray-200 max-w-xs">
-                    <p className="line-clamp-3 leading-relaxed">{row.review}</p>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${SENTIMENT_BADGE[row.sentiment]}`}>
-                      <span>{SENTIMENT_ICON[row.sentiment]}</span>
-                      {row.sentiment}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full bg-himalaya-mist dark:bg-himalaya-blue/20 text-himalaya-blue dark:text-himalaya-mist">
-                      <span>{THEME_ICON[row.theme]}</span>
-                      {row.theme}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 text-sm text-gray-600 dark:text-gray-300">
-                    <div className="flex items-start gap-1">
-                      <p className="flex-1 leading-relaxed text-xs italic">{row.response}</p>
-                      <CopyButton text={row.response} />
-                    </div>
-                  </td>
+        <>
+          {/* Mobile card list — no horizontal scroll on small screens */}
+          <div className="md:hidden space-y-3">
+            {filtered.map((row) => (
+              <div key={row._index} className="rounded-xl border border-gray-100 dark:border-gray-700 bg-white dark:bg-himalaya-stone p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-400 font-mono">#{row._index + 1}</span>
+                  <Badge variant={sentimentVariant(row.sentiment)}>
+                    {SENTIMENT_ICON[row.sentiment]} {row.sentiment}
+                  </Badge>
+                </div>
+                <p className="text-sm text-gray-700 dark:text-gray-200 leading-relaxed line-clamp-3">
+                  {row.review}
+                </p>
+                <div className="flex items-center justify-between gap-2">
+                  <Badge variant="theme">
+                    {THEME_ICON[row.theme]} {row.theme}
+                  </Badge>
+                  <button
+                    onClick={() => setDetailRow(row)}
+                    className="text-xs font-semibold text-himalaya-sky hover:underline flex-shrink-0"
+                  >
+                    View details →
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tablet / desktop table */}
+          <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-700">
+            <table className="min-w-full divide-y divide-gray-100 dark:divide-gray-700">
+              <thead>
+                <tr className="bg-himalaya-mist/60 dark:bg-himalaya-blue/10">
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider w-8">#</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider min-w-[160px]">Original Review</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider">Sentiment</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider">Theme</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider min-w-[200px]">Suggested Response</th>
+                  <th className="px-4 py-3 text-left text-xs font-semibold text-himalaya-blue dark:text-himalaya-mist uppercase tracking-wider">Detail</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-white dark:bg-himalaya-stone divide-y divide-gray-50 dark:divide-gray-700/50">
+                {filtered.map((row) => (
+                  <tr
+                    key={row._index}
+                    className="hover:bg-himalaya-snow dark:hover:bg-himalaya-slate/50 transition-colors"
+                  >
+                    <td className="px-4 py-4 text-xs text-gray-400 font-mono">{row._index + 1}</td>
+                    <td className="px-4 py-4 text-sm text-gray-700 dark:text-gray-200 max-w-xs">
+                      <p className="line-clamp-3 leading-relaxed">{row.review}</p>
+                    </td>
+                    <td className="px-4 py-4">
+                      <Badge variant={sentimentVariant(row.sentiment)}>
+                        {SENTIMENT_ICON[row.sentiment]} {row.sentiment}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-4">
+                      <Badge variant="theme">
+                        {THEME_ICON[row.theme]} {row.theme}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-4 text-sm text-gray-600 dark:text-gray-300">
+                      <div className="flex items-start gap-1">
+                        <p className="flex-1 leading-relaxed text-xs italic">{row.response}</p>
+                        <CopyButton text={row.response} />
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <button
+                        onClick={() => setDetailRow(row)}
+                        className="text-xs font-semibold text-himalaya-sky hover:underline whitespace-nowrap"
+                      >
+                        View →
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
+
+      <ReviewDetailModal review={detailRow} onClose={() => setDetailRow(null)} />
     </div>
   );
 };

@@ -9,10 +9,9 @@ import Hero from '../components/Hero';
 import FeatureCard from '../components/FeatureCard';
 import SectionTitle from '../components/SectionTitle';
 import Badge from '../components/Badge';
+import { Input, Button } from '../components/ui';
 import { FEATURES, SAMPLE_REVIEWS } from '../data/sampleData';
-
-const SENTIMENT_ICON = { Positive: '😊', Neutral: '😐', Negative: '😞' };
-const THEME_ICON     = { Food: '🍽️', Host: '🤝', Location: '📍', Cleanliness: '🧹', Value: '💰', Experience: '⭐' };
+import { SENTIMENT_ICON, THEME_ICON, sentimentVariant } from '../utils/reviewMeta';
 
 const EXAMPLE_TEXT = `Amazing food and very friendly staff. Highly recommend!
 Rooms were clean but breakfast was average and nothing special.
@@ -80,31 +79,36 @@ const Home = () => {
               )}
             </div>
 
-            <textarea
-              className="input-field h-40 resize-none"
+            <Input
+              type="textarea"
+              rows={6}
+              className="h-40"
               placeholder={`Try pasting:\n${EXAMPLE_TEXT}`}
               value={previewText}
               onChange={(e) => { setPreviewText(e.target.value); setShowResults(false); }}
+              aria-label="Preview reviews input"
             />
 
             <div className="flex flex-wrap gap-3 mt-4">
-              <button
+              <Button
                 onClick={handleAnalyzePreview}
                 disabled={!previewText.trim()}
-                className="btn-primary flex items-center gap-2 flex-1 sm:flex-none justify-center"
+                icon={<span>🧠</span>}
+                className="flex-1 sm:flex-none"
               >
-                <span>🧠</span> Analyze Reviews
-              </button>
-              <button
+                Analyze Reviews
+              </Button>
+              <Button
                 onClick={() => { setPreviewText(EXAMPLE_TEXT); setShowResults(false); }}
-                className="btn-secondary flex items-center gap-2"
+                variant="secondary"
+                icon={<span>📋</span>}
               >
-                📋 Load Examples
-              </button>
+                Load Examples
+              </Button>
               {previewText && (
-                <button onClick={handleClear} className="btn-secondary text-red-500 border-red-200 hover:bg-red-50 flex items-center gap-2">
-                  🗑 Clear
-                </button>
+                <Button onClick={handleClear} variant="danger" icon={<span>🗑</span>}>
+                  Clear
+                </Button>
               )}
             </div>
           </div>
@@ -139,7 +143,7 @@ const Home = () => {
                           <p className="line-clamp-2">{row.review}</p>
                         </td>
                         <td className="px-4 py-3">
-                          <Badge variant={row.sentiment.toLowerCase()}>
+                          <Badge variant={sentimentVariant(row.sentiment)}>
                             {SENTIMENT_ICON[row.sentiment]} {row.sentiment}
                           </Badge>
                         </td>
@@ -166,9 +170,9 @@ const Home = () => {
         <div className="max-w-4xl mx-auto text-center card gradient-card text-white">
           <h2 className="font-display text-3xl font-bold mb-4">Ready to understand your guests?</h2>
           <p className="text-white/80 mb-8">Open the dashboard, paste your reviews, and let AI do the rest.</p>
-          <Link to="/dashboard" className="btn-outline inline-block">
+          <Button to="/dashboard" variant="outline" size="lg">
             Open Dashboard →
-          </Link>
+          </Button>
         </div>
       </section>
     </>

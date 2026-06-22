@@ -3,7 +3,7 @@
  * Premium gradient banner with mountain motif
  */
 
-import { Link } from 'react-router-dom';
+import Button from './ui/Button';
 
 const Hero = () => (
   <header className="relative overflow-hidden bg-gradient-to-br from-himalaya-blue via-himalaya-sky to-himalaya-teal py-20 sm:py-28 px-6">
@@ -59,12 +59,12 @@ const Hero = () => (
 
       {/* CTA buttons */}
       <div className="flex flex-wrap justify-center gap-4 animate-fade-up delay-300">
-        <Link to="/dashboard" className="btn-primary !py-3.5 !px-8 text-base shadow-lg">
+        <Button to="/dashboard" variant="primary" size="lg" className="shadow-lg">
           Analyze Reviews →
-        </Link>
-        <Link to="/about" className="btn-outline !py-3.5 !px-8 text-base">
+        </Button>
+        <Button to="/about" variant="outline" size="lg">
           Learn More
-        </Link>
+        </Button>
       </div>
 
       {/* Feature pills */}

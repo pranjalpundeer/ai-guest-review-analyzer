@@ -40,10 +40,11 @@ const Footer = () => (
           <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Navigation</h4>
           <ul className="space-y-2">
             {[
-              { label: 'Home',      path: '/'          },
-              { label: 'About',     path: '/about'     },
-              { label: 'Dashboard', path: '/dashboard' },
-              { label: 'Login',     path: '/login'     },
+              { label: 'Home',       path: '/'            },
+              { label: 'About',      path: '/about'       },
+              { label: 'Dashboard',  path: '/dashboard'   },
+              { label: 'Login',      path: '/login'       },
+              { label: 'Components', path: '/components'  },
             ].map((l) => (
               <li key={l.path}>
                 <Link

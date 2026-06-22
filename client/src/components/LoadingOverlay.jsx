@@ -1,16 +1,15 @@
 /**
  * LoadingOverlay Component
- * Full-width loading indicator while AI processes reviews
+ * Full-width loading indicator while AI processes reviews.
+ * Wraps the reusable Loader component (variant="mountain") in the card
+ * chrome used elsewhere on the dashboard.
  */
+
+import Loader from './ui/Loader';
 
 const LoadingOverlay = ({ count }) => (
   <div className="card flex flex-col items-center justify-center py-12 gap-5">
-    {/* Animated mountain spinner */}
-    <div className="relative w-16 h-16">
-      <div className="absolute inset-0 rounded-full border-4 border-himalaya-mist dark:border-himalaya-blue/30"></div>
-      <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-himalaya-blue animate-spin"></div>
-      <div className="absolute inset-0 flex items-center justify-center text-2xl">🏔️</div>
-    </div>
+    <Loader variant="mountain" size="lg" />
 
     <div className="text-center">
       <p className="font-semibold text-himalaya-blue dark:text-himalaya-mist text-lg">
