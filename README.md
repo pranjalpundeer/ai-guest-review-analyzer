@@ -115,19 +115,24 @@ All components are documented with JSDoc, exported via `index.js`, and demoed at
 # 🖼️ Screenshots
 
 ## Desktop (1440px)
-![Desktop View](docs/screenshots/screenshot_desktop.png)
+<img width="1440" height="2295" alt="screenshot_desktop" src="https://github.com/user-attachments/assets/fb1e5ef6-6674-46ea-a759-14b8330f9006" />
+
 
 ## Tablet (768px)
-![Tablet View](docs/screenshots/screenshot_tablet.png)
+<img width="768" height="3141" alt="screenshot_tablet" src="https://github.com/user-attachments/assets/3e54983a-7378-4a6a-9382-da5470c97f50" />
+
 
 ## Mobile (375px)
-![Mobile View](docs/screenshots/screenshot_mobile.png)
+<img width="375" height="3965" alt="screenshot_mobile" src="https://github.com/user-attachments/assets/05ac7634-b73e-4f97-842e-025672e52a51" />
+
 
 ## Light Mode
-![Light Mode](docs/screenshots/screenshot_light.png)
+<img width="1440" height="2295" alt="screenshot_light" src="https://github.com/user-attachments/assets/c5db45e1-3c4e-4a00-a681-0a7a61df07e7" />
+
 
 ## Dark Mode
-![Dark Mode](docs/screenshots/screenshot_dark.png)
+<img width="1440" height="2295" alt="screenshot_dark" src="https://github.com/user-attachments/assets/3a54483f-cf3e-4da0-9826-c43dafd84135" />
+
 
 ---
 
