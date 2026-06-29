@@ -204,6 +204,7 @@ himalayan-review-platform/
 │   │   │   ├── FeatureCard.jsx
 │   │   │   ├── Footer.jsx
 │   │   │   ├── Hero.jsx
+│   │   │   ├── LiveReviewsPanel.jsx       ← Week 4: live /api/reviews + /api/stats demo
 │   │   │   ├── LoadingOverlay.jsx
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── ResultsTable.jsx
@@ -243,11 +244,21 @@ himalayan-review-platform/
 │
 ├── server/
 │   ├── controllers/
-│   │   └── analyzeController.js
+│   │   ├── analyzeController.js
+│   │   ├── reviewController.js            ← Week 4
+│   │   └── statsController.js             ← Week 4
+│   ├── middleware/                        ← Week 4
+│   │   ├── errorHandler.js
+│   │   └── validateReview.js
+│   ├── data/                              ← Week 4
+│   │   └── reviews.js
 │   ├── routes/
-│   │   └── analyze.js
+│   │   ├── analyze.js
+│   │   ├── reviews.js                     ← Week 4
+│   │   └── stats.js                       ← Week 4
 │   ├── services/
 │   │   └── openaiService.js
+│   ├── .env.example
 │   ├── index.js
 │   └── package.json
 │
@@ -310,9 +321,99 @@ Visit `http://localhost:5173` — and go to `/components` to see the full compon
 
 ---
 
+# 🧪 How to Run Backend Locally (Week 4)
+
+1. **Install dependencies**
+   ```bash
+   cd server
+   npm install
+   ```
+
+2. **Create your local `.env` file** from the provided example (the real `.env` is git-ignored and never committed):
+   ```bash
+   cp .env.example .env
+   ```
+   Then fill in your own `OPENAI_API_KEY` (only required for the `/api/analyze` route — the
+   `/api/reviews` and `/api/stats` endpoints work without it).
+
+3. **Start the server**
+   ```bash
+   npm run dev      # nodemon, auto-restarts on file changes
+   # or
+   npm start        # plain node
+   ```
+
+4. **Confirm it's running**
+   ```bash
+   curl http://localhost:5000/health
+   # {"status":"ok","message":"Himalayan Platform API is running"}
+   ```
+
+5. **Try the new Week 4 endpoints**
+   ```bash
+   curl http://localhost:5000/api/reviews
+   curl http://localhost:5000/api/stats
+   curl "http://localhost:5000/api/reviews/search?q=hospitality"
+   ```
+
+The server runs on `http://localhost:5000` by default (configurable via `PORT` in `.env`).
+CORS is restricted to `CLIENT_URL` (defaults to `http://localhost:5173`).
+
+---
+
 # 📡 API
 
-## POST `/api/analyze`
+## Guest Reviews — `/api/reviews` (Week 4)
+
+| Method | Endpoint              | Description                                  |
+|--------|------------------------|-----------------------------------------------|
+| GET    | `/api/reviews`         | List all reviews                              |
+| GET    | `/api/reviews/search?q=` | Search reviews by keyword, guest, theme, sentiment |
+| GET    | `/api/reviews/:id`     | Get a single review by id                     |
+| POST   | `/api/reviews`         | Create a new review                           |
+| PUT/PATCH | `/api/reviews/:id`  | Update an existing review                     |
+| DELETE | `/api/reviews/:id`     | Delete a review                               |
+
+**Create / Update body**
+```json
+{
+  "guestName": "Ananya Sharma",
+  "rating": 5,
+  "review": "Amazing food and very friendly staff!",
+  "theme": "Food"
+}
+```
+
+**List response**
+```json
+{
+  "success": true,
+  "count": 8,
+  "data": [
+    { "id": "r1", "guestName": "Ananya Sharma", "rating": 5, "sentiment": "Positive", "theme": "Hospitality", "review": "..." }
+  ]
+}
+```
+
+Error responses use a consistent shape and correct HTTP status codes (`400` validation, `404` not found, `500` server error):
+```json
+{ "success": false, "error": "Review not found" }
+```
+
+## Guest Stats — `/api/stats` (Week 4)
+
+| Method | Endpoint      | Description                                         |
+|--------|---------------|------------------------------------------------------|
+| GET    | `/api/stats`  | Total/positive/negative/neutral counts, average rating, theme breakdown |
+
+```json
+{
+  "success": true,
+  "data": { "total": 8, "positive": 4, "negative": 2, "neutral": 2, "averageRating": 3.4 }
+}
+```
+
+## POST `/api/analyze` (existing — unchanged)
 
 ### Request
 ```json

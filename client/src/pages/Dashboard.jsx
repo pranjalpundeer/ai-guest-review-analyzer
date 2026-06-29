@@ -15,6 +15,7 @@ import ReviewInput from '../components/ReviewInput';
 import LoadingOverlay from '../components/LoadingOverlay';
 import ErrorBanner from '../components/ErrorBanner';
 import DashboardSidebar from '../components/DashboardSidebar';
+import LiveReviewsPanel from '../components/LiveReviewsPanel';
 import { Button } from '../components/ui';
 import { useToast } from '../context/ToastContext';
 import { analyzeReviews } from '../utils/api';
@@ -189,6 +190,9 @@ const Dashboard = () => {
               </div>
             )}
           </div>
+
+          {/* ===== Live Backend section — Week 4 REST API demo ===== */}
+          <LiveReviewsPanel />
 
         </div>
       </div>

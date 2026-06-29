@@ -17,6 +17,7 @@ const SECTIONS = [
   { id: 'overview', label: 'Overview',        icon: '📊' },
   { id: 'analyze',  label: 'Analyze Reviews',  icon: '🧠' },
   { id: 'results',  label: 'Review Results',   icon: '📋' },
+  { id: 'live-backend', label: 'Live Backend (Week 4)', icon: '🔌' },
 ];
 
 const DashboardSidebar = ({ open, onClose }) => {
